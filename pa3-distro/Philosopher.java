@@ -85,35 +85,32 @@ public class Philosopher extends BaseThread
 	/**
 	 * No, this is not the act of running, just the overridden Thread.run()
 	 */
-	public void run()
-	{
-		for(int i = 0; i < DiningPhilosophers.DINING_STEPS; i++)
-		{
-			DiningPhilosophers.soMonitor.pickUp(getTID());
+	public void run() {
+        for (int i = 0; i < DiningPhilosophers.DINING_STEPS; i++) {
 
-			eat();
 
-			DiningPhilosophers.soMonitor.putDown(getTID());
 
-			think();
+            DiningPhilosophers.soMonitor.pickUp(getTID());
 
-			/*
-			 * TODO:
-			 * A decision is made at random whether this particular
-			 * philosopher is about to say something terribly useful.
-			 */
-			if(true == false)
-			{
-				DiningPhilosophers.soMonitor.requestTalk(getTID());
+            eat();
 
-				talk();
+            DiningPhilosophers.soMonitor.putDown(getTID());
 
-				DiningPhilosophers.soMonitor.endTalk(getTID());
-			}
+            think();
 
-			yield();
-		}
-	} // run()
+            try {
+                DiningPhilosophers.soMonitor.requestTalk();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            talk();
+            DiningPhilosophers.soMonitor.endTalk();
+            yield();
+
+
+        }
+
+    } // run()
 
 	/**
 	 * Prints out a phrase from the array of phrases at random.

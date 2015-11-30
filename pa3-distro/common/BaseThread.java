@@ -32,7 +32,6 @@ public class BaseThread extends Thread
 	 * Our Thread ID
 	 */
 	protected int iTID;
-
 	/**
 	 * TID of a thread to proceed to the phase II
 	 */

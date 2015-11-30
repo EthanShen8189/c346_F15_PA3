@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Class DiningPhilosophers
  * The main starter.
@@ -15,7 +17,7 @@ public class DiningPhilosophers
 	/**
 	 * This default may be overridden from the command line
 	 */
-	public static final int DEFAULT_NUMBER_OF_PHILOSOPHERS = 4;
+	public static int numberOfPhilosopher;
 
 	/**
 	 * Dining "iterations" per philosopher thread
@@ -41,23 +43,26 @@ public class DiningPhilosophers
 	{
 		try
 		{
-			/*
-			 * TODO:
-			 * Should be settable from the command line
-			 * or the default if no arguments supplied.
-			 */
-			int iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
+			Scanner input = new Scanner(System.in);
+            
+            System.out.println("Please let me know how many philosophers will come to dinner.");
+            numberOfPhilosopher = input.nextInt();
+            
+            while(numberOfPhilosopher<=0){
+                System.out.println("Please let me know how many philosophers will come to dinner.");
+                numberOfPhilosopher = input.nextInt();
+            }
 
 			// Make the monitor aware of how many philosophers there are
-			soMonitor = new Monitor(iPhilosophers);
+			soMonitor = new Monitor(numberOfPhilosopher);
 
 			// Space for all the philosophers
-			Philosopher aoPhilosophers[] = new Philosopher[iPhilosophers];
+			Philosopher aoPhilosophers[] = new Philosopher[numberOfPhilosopher];
 
-			System.out.println(iPhilosophers + " philosopher(s) came in for a dinner.");
+			System.out.println(numberOfPhilosopher + " philosopher(s) came in for a dinner.");
 
 			// Let 'em sit down
-			for(int j = 0; j < iPhilosophers; j++)
+			for(int j = 0; j < numberOfPhilosopher; j++)
 			{
 				aoPhilosophers[j] = new Philosopher();
 				aoPhilosophers[j].start();
@@ -67,7 +72,7 @@ public class DiningPhilosophers
 
 			// Main waits for all its children to die...
 			// I mean, philosophers to finish their dinner.
-			for(int j = 0; j < iPhilosophers; j++)
+			for(int j = 0; j < numberOfPhilosopher; j++)
 				aoPhilosophers[j].join();
 
 			System.out.println("All philosophers have left. System terminates normally.");
