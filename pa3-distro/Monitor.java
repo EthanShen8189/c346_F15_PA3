@@ -58,7 +58,7 @@ public class Monitor
         eatTest(current);
         while(states[current]!=State.eating)
             try {
-                System.out.println("Philosopher " + piTID + " is waiting for chopsticks");
+                System.out.println("####################### Philosopher " + piTID + " is waiting for chopsticks #######################");
                 this.wait();
 
             } catch (InterruptedException e) {

@@ -23,14 +23,13 @@ public class Philosopher extends BaseThread
 	 */
 	public void eat(int i)
 	{
-        int counter=1;
 		try
 		{
-			System.out.println("Philosopher " + getTID()+" starts to eat for " + i + " times.");
+			System.out.println("Philosopher " + getTID()+" *starts* to eat for " + i + " times.");
 			yield();
 			sleep((long) (Math.random() * TIME_TO_WASTE));
 			yield();
-			System.out.println("Philosopher " + getTID()+" finishes eating for "+ i + " times.");
+			System.out.println("Philosopher " + getTID()+" *finishes* eating for "+ i + " times.");
 		}
 		catch(InterruptedException e)
 		{
@@ -116,7 +115,7 @@ public class Philosopher extends BaseThread
             yield();
 
             if(i==9)
-                System.out.println("*********************************************Philosopher " + getTID() + " has left the table.*********************************************");
+                System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Philosopher " + getTID() + " has left the table. $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         }
 
     } // run()
